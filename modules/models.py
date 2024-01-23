@@ -58,6 +58,10 @@ class FFNN(nn.Module):
         """
         super().__init__()
 
+        # In order for PyTorch to be able to detect submodules, they either
+        # need to be attributes of the `Module` subclass or they need to be
+        # put in ad-hoc containers provided by PyTorch itself such as
+        # `ModuleList` objects.
         self.linear_layers = nn.ModuleList([
             nn.Linear(in_features=dims[i], out_features=dims[i+1])
             for i in range(len(dims) - 1)
